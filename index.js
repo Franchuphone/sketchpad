@@ -8,7 +8,7 @@ function addResetBtn() {
 }
 
 function boxNumberBtn() {
-    let boxNumber = prompt( "How many squares per side do you want?", "10" );
+    let boxNumber = prompt( "How many squares per side do you want? MAX 200", "16" );
     return boxNumber;
 }
 
@@ -19,7 +19,7 @@ function createBox() {
 }
 
 function createGrid( boxNumber ) {
-    if ( isNaN( boxNumber ) || +boxNumber <= 0 ) return;
+    if ( isNaN( boxNumber ) || +boxNumber <= 0 || +boxNumber > 200 ) return;
     removeResetBtn();
     removeContainerText();
     removeGrid();
@@ -46,17 +46,52 @@ function designResetBtn( div, button ) {
     button.textContent = "Reset Sketchpad";
 }
 
-function paintBox( box ) {
-    box.className += " bg-pastel-green";
+// Click and move version
+
+function handlerColorBox( e ) {
+    const boxes = document.querySelectorAll( "div.box" );
+    e.preventDefault();
+    if ( e.type == "mousedown" ) {
+        boxes.forEach( box => {
+            box.addEventListener( "mousemove", paintBox );
+        } );
+    } else {
+        boxes.forEach( box => {
+            box.removeEventListener( "mousemove", paintBox );
+        } );
+    }
+}
+
+function paintBox() {
+    this.className += " bg-pastel-green";
 }
 
 function paintGrid() {
-    const boxes = document.querySelectorAll( "div.box" );
-    boxes.forEach( box => {
-        box.addEventListener( "mouseover", () => paintBox( box ) );
-        box.addEventListener( "touchstart", () => paintBox( box ), { passive: true } );
-    } );
+    boxContainer.addEventListener( "mousedown", ( e ) => handlerColorBox( e ) );
+    boxContainer.addEventListener( "mouseup", ( e ) => handlerColorBox( e ) );
 }
+
+// Mouseover version
+//
+// function paintBox( box ) {
+//     box.className += " bg-pastel-green";
+// }
+
+// function paintGrid() {
+//     const boxes = document.querySelectorAll( "div.box" );
+//     boxes.forEach( box => {
+//         box.addEventListener( "mousemove", () => paintBox( box ) );
+//         box.addEventListener( "touchstart", ( e ) => {
+//             e.preventDefault();
+//             paintBox( box );
+//             console.log( e )
+//         } );
+//         box.addEventListener( "touchmove", ( e ) => {
+//             e.preventDefault();
+//             paintBox( box );
+//         } );
+//     } );
+// }
 
 function removeContainerText() {
     const texts = document.querySelectorAll( "div.container-text" );
