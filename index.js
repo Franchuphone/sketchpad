@@ -134,7 +134,7 @@ function removeResetBtn() {
 function resetGrid( resetBtn ) {
     resetBtn.addEventListener( "click", () => {
         const boxes = document.querySelectorAll( "div.box" );
-        boxes.forEach( box => box.className = "box bg-pastel-pink" );
+        boxes.forEach( box => box.className = "box bg-pastel-blue" );
     } );
 }
 
