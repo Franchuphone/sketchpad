@@ -22,8 +22,7 @@ body {
 }
 
 .container {
-    margin: 0.5rem auto;
-    padding: 1rem;
+    margin: 0.7rem auto;
     text-align: center;
     padding: auto;
     display: flex;
@@ -34,6 +33,7 @@ body {
 .sketchpad {
     height: 70%;
     aspect-ratio: 1;
+    padding: 1rem;
 }
 
 .box {
@@ -65,12 +65,21 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-
 }
 
 .container-text {
     margin: auto;
     font-size: 6rem;
+}
+
+.reduce {
+    transform: scale(0.4);
+    margin: -2rem auto;
+}
+
+.font-information {
+    color: rgb(151, 146, 146);
+    font-size: 3.5rem;
 }
 
 @media (max-width: 800px) {
@@ -89,6 +98,23 @@ body {
     .container-text {
         font-size: 2rem;
     }
+
+    .font-information {
+        font-size: 2rem;
+    }
+
+    .reduce {
+        transform: scale(0.6);
+    }
+
+    img {
+        transform: scale(0.4);
+    }
+
+    .container-information {
+        flex-direction: column;
+        margin: -4rem auto;
+    }
 }
 
 @media (max-width: 400px) {
@@ -98,5 +124,17 @@ body {
 
     .container-text {
         font-size: 1.2rem;
+    }
+
+    .reduce {
+        transform: scale(0.4);
+    }
+
+    img {
+        transform: scale(0.5);
+    }
+
+    .container-information {
+        margin: -5.5rem auto;
     }
 }

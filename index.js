@@ -8,7 +8,7 @@ function addResetBtn() {
 }
 
 function boxNumberBtn() {
-    let boxNumber = prompt( "How many squares per side do you want? MAX 200", "16" );
+    let boxNumber = prompt( "Enter a number between 1 and 200", "16" );
     return boxNumber;
 }
 
@@ -19,15 +19,17 @@ function createBox() {
 }
 
 function createGrid( boxNumber ) {
-    if ( isNaN( boxNumber ) || +boxNumber <= 0 || +boxNumber > 200 ) return;
-    removeResetBtn();
-    removeContainerText();
-    removeGrid();
-    resetGrid( addResetBtn() );
-    for ( i = 1; i <= ( boxNumber * boxNumber ); i++ ) {
-        designBox( createBox(), boxNumber );
+    if ( handlePromptChoice( boxNumber ) ) {
+        removeResetBtn();
+        removeContainerText();
+        removeGrid();
+        resetGrid( addResetBtn() );
+        modifyInformation();
+        for ( i = 1; i <= ( boxNumber * boxNumber ); i++ ) {
+            designBox( createBox(), boxNumber );
+        };
+        designGrid();
     };
-    designGrid();
 }
 
 function designBox( box, boxNumber ) {
@@ -46,7 +48,16 @@ function designResetBtn( div, button ) {
     button.textContent = "Reset Sketchpad";
 }
 
-// Click and move version
+function handlePromptChoice( boxNumber ) {
+    if ( boxNumber === null ) return false;
+    else if ( isNaN( boxNumber ) || boxNumber <= 0 || boxNumber > 200 ) {
+        alert( "You don't have enter a number between 1 and 200" )
+        createGrid( boxNumberBtn() );
+        return false;
+    } else return true;
+}
+
+// Click and drag version
 
 function handlerColorBox( e ) {
     const boxes = document.querySelectorAll( "div.box" );
@@ -92,6 +103,12 @@ function paintGrid() {
 //         } );
 //     } );
 // }
+
+function modifyInformation() {
+    const imgInformation = document.querySelectorAll( "img" );
+    imgInformation.forEach( img => img.src = "images/arrow-down.svg" );
+    document.querySelector( "div.font-information" ).textContent = "Click and hold to draw";
+}
 
 function removeContainerText() {
     const texts = document.querySelectorAll( "div.container-text" );
