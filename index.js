@@ -34,8 +34,9 @@ function createGrid( boxNumber ) {
 
 function designBox( box, boxNumber ) {
     const mathWidth = 100 / boxNumber;
-    box.className = "box bg-pastel-pink";
+    box.className = "box";
     box.style.setProperty( 'width', `calc(${ mathWidth }%)` );
+    box.style.opacity = "0";
 }
 
 function designGrid() {
@@ -75,6 +76,7 @@ function handlerColorBox( e ) {
 
 function paintBox() {
     this.className += " bg-pastel-green";
+    this.style.setProperty( "opacity", `calc( ${ this.style.opacity } + 0.1)` );
 }
 
 function paintGrid() {
