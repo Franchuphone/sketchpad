@@ -65,18 +65,20 @@ function handlerColorBox( e ) {
     e.preventDefault();
     if ( e.type == "mousedown" ) {
         boxes.forEach( box => {
-            box.addEventListener( "mousemove", paintBox );
+            box.addEventListener( "mouseover", paintBox );
+            box.addEventListener( "mouseout", paintBox );
         } );
     } else {
         boxes.forEach( box => {
-            box.removeEventListener( "mousemove", paintBox );
+            box.removeEventListener( "mouseover", paintBox );
+            box.removeEventListener( "mouseout", paintBox );
         } );
     }
 }
 
 function paintBox() {
     this.className += " bg-pastel-green";
-    this.style.setProperty( "opacity", `calc( ${ this.style.opacity } + 0.1)` );
+    this.style.setProperty( "opacity", `calc( ${ this.style.opacity } + 0.2)` );
 }
 
 function paintGrid() {
