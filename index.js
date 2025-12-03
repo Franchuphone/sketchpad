@@ -83,7 +83,7 @@ function paintBox() {
 
 function paintGrid() {
     boxContainer.addEventListener( "mousedown", ( e ) => handlerColorBox( e ) );
-    boxContainer.addEventListener( "mouseup", ( e ) => handlerColorBox( e ) );
+    document.addEventListener( "mouseup", ( e ) => handlerColorBox( e ) );
 }
 
 // Mouseover version
